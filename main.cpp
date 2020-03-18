@@ -4,5 +4,6 @@ using namespace std;
 int main()
 {
     Optimizer opt(2, 100, 3);
-    cout<<opt.solve(Solver::GoldenSplit)<<endl;
+    // cout<<opt.goldenSplit()<<endl;
+    cout<<opt.gridSearch(20);
 }

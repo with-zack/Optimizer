@@ -26,6 +26,7 @@ void Optimizer::forback()
             }
         }
     }
+    cout<<"Left: "<<left<<" Right: "<<right<<endl;
 }
 double Optimizer::goldenSplit()
 {
@@ -44,4 +45,33 @@ double Optimizer::goldenSplit()
         }
     }
     return (left+right)/2;
+}
+double Optimizer::quadraInterpolation()
+{
+
+}
+double Optimizer::gridSearch(unsigned int m = 10)
+{
+    forback();
+    double step = (right-left)/(m+1);
+    double ans = left;
+    while(epsilon<(2*step))
+    {
+        double minimum = f(left);
+        unsigned int alpha = 0;
+        for(unsigned int i=1;i<m;i++)
+        {
+            double temp = f(left+step*i);
+            if(temp < minimum)
+            {
+                alpha = i;
+                minimum = temp;
+            }
+        }
+        ans = left + step*alpha;
+        right = left + step*(alpha+1);
+        left += step*(alpha-1);
+        step = 2*step/(m+1);
+    }
+    return ans;
 }

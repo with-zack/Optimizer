@@ -4,7 +4,7 @@ using namespace std;
 
 enum class Solver
 {
-    GoldenSplit, QuadraInterpolation
+    GoldenSplit, QuadraticInterpolation
 };
 
 class Optimizer
@@ -12,8 +12,6 @@ class Optimizer
 private:
     double a = 0, b = 0, c = 0;
     double left = 0, right = 1, h = 1;
-    // minimum interval for some method to stop
-    double epsilon = 0.05;
     // calculate function value
     double f(double x)
     {
@@ -21,6 +19,7 @@ private:
     }
     // use forward-backward method to find the interval where optima exists
     void forback();
+    double epsilon = 0.05;
 
 public:
     Optimizer(double a, double b, double c)
@@ -33,21 +32,10 @@ public:
         this->b = b;
         this->c = c;
     }
-    double solve(Solver solver)
-    {
-        forback();
-        cout<<left<<" "<<right<<endl;
-        switch (solver)
-        {
-        case Solver::GoldenSplit:
-            return goldenSplit();
-            break;
-        case Solver::QuadraInterpolation:
-            break;
-        default:
-            break;
-        }
-    }
+    // use golden split method:黄金分割法
     double goldenSplit();
+    double quadraInterpolation();
+    // grid method：格点法
+    double gridSearch(unsigned int m);
 };
 
