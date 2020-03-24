@@ -1,5 +1,6 @@
 #include <iostream>
 #include <exception>
+#include <vector>
 using namespace std;
 
 enum class Solver
@@ -12,6 +13,8 @@ class Optimizer
 private:
     double a = 0, b = 0, c = 0;
     double left = 0, right = 1, h = 1;
+    // function pointer
+    double (*func_ptr) (int n_input);
     // calculate function value
     double f(double x)
     {
