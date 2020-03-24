@@ -1,4 +1,4 @@
-#include "optimizer.hpp"
+#include "optimizer1D.hpp"
 void Optimizer::forback()
 {
     double middle;

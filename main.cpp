@@ -1,5 +1,5 @@
 #include <iostream>
-#include "optimizer.hpp"
+#include "optimizer1D.hpp"
 using namespace std;
 int main()
 {
